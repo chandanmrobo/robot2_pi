@@ -1,0 +1,19 @@
+camera:
+  # Pi Camera settings
+  resolution_width: 640
+  resolution_height: 480
+  framerate: 30
+  flip_horizontal: false
+  flip_vertical: false
+
+  # Encoding settings
+  jpeg_quality: 85
+
+  # ROS topics
+  raw_topic: "/robot2/camera/image_raw"
+  compressed_topic: "/robot2/camera/image_raw/compressed"
+
+  # Processing
+  enable_preprocessing: true
+  brightness: 1.0
+  contrast: 1.0
