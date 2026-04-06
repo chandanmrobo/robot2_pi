@@ -1,0 +1,329 @@
+guestuser@mars-4090-22:~/bird_model_make/code_files$ python3 04_train_plant.py
+============================================================
+Plant Disease Training — EfficientNetB4
+Device : cuda
+Classes: 38
+============================================================
+GPU: NVIDIA GeForce RTX 4090
+VRAM: 25.3 GB
+/home/guestuser/bird_model_make/code_files/04_train_plant.py:99: UserWarning: Argument(s) 'var_limit' are not valid for transform GaussNoise
+  A.GaussNoise(var_limit=(10, 50), p=0.4),            # Dust/noise
+/home/guestuser/bird_model_make/code_files/04_train_plant.py:100: UserWarning: Argument(s) 'max_holes, max_height, max_width, fill_value' are not valid for transform CoarseDropout
+  A.CoarseDropout(max_holes=8, max_height=32, max_width=32, fill_value=0, p=0.3),
+/home/guestuser/bird_model_make/code_files/04_train_plant.py:101: UserWarning: Argument(s) 'alpha_affine' are not valid for transform ElasticTransform
+  A.ElasticTransform(alpha=1, sigma=50, alpha_affine=50, p=0.3),
+
+Dataset split:
+  Train: 30736 images | 961 batches
+  Val  : 6574   images | 206   batches
+  Test : 6618  images | 207  batches
+
+EfficientNetB4: 17.6M params
+/home/guestuser/bird_model_make/code_files/04_train_plant.py:202: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler  = GradScaler()
+
+============================================================
+PHASE 1 (5 epochs): Head only, backbone frozen
+============================================================
+/home/guestuser/bird_model_make/code_files/04_train_plant.py:219: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast():
+/home/guestuser/bird_model_make/code_files/04_train_plant.py:243: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast():
+  Ep  1/5 | Train 0.135 (3.1564) | Val 0.655 (1.6173) | 26s ✅ BEST
+  Ep  2/5 | Train 0.514 (1.6590) | Val 0.825 (0.6126) | 25s ✅ BEST
+  Ep  3/5 | Train 0.595 (1.2777) | Val 0.857 (0.4801) | 25s ✅ BEST
+  Ep  4/5 | Train 0.623 (1.1674) | Val 0.867 (0.4359) | 25s ✅ BEST
+  Ep  5/5 | Train 0.623 (1.1665) | Val 0.863 (0.4470) | 25s
+
+============================================================
+PHASE 2 (25 epochs): Full finetune
+============================================================
+/home/guestuser/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:224: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn(
+/home/guestuser/bird_model_make/code_files/04_train_plant.py:215: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast():
+  Ep  1/25 | Train 0.504 (1.2959) | Val 0.895 (0.2977) | 45s ... BEST
+  Ep  2/25 | Train 0.585 (0.9459) | Val 0.939 (0.1708) | 45s ... BEST
+  Ep  3/25 | Train 0.622 (0.7169) | Val 0.961 (0.1106) | 45s ... BEST
+  Ep  4/25 | Train 0.684 (0.5536) | Val 0.972 (0.0824) | 45s ... BEST
+  Ep  5/25 | Train 0.665 (0.5366) | Val 0.978 (0.0666) | 45s ... BEST
+  Ep  6/25 | Train 0.705 (0.4742) | Val 0.979 (0.0613) | 45s ... BEST
+  Ep  7/25 | Train 0.714 (0.4512) | Val 0.979 (0.0612) | 45s ... BEST
+  Ep  8/25 | Train 0.696 (0.4461) | Val 0.983 (0.0506) | 45s ... BEST
+  Ep  9/25 | Train 0.728 (0.3777) | Val 0.987 (0.0436) | 45s ... BEST
+  Ep 10/25 | Train 0.713 (0.3661) | Val 0.987 (0.0412) | 45s (1/8)
+  Ep 11/25 | Train 0.714 (0.3848) | Val 0.990 (0.0392) | 45s ... BEST
+  Ep 12/25 | Train 0.704 (0.3778) | Val 0.989 (0.0415) | 45s (1/8)
+  Ep 13/25 | Train 0.739 (0.3369) | Val 0.990 (0.0344) | 45s ... BEST
+  Ep 14/25 | Train 0.737 (0.3297) | Val 0.989 (0.0351) | 45s (1/8)
+  Ep 15/25 | Train 0.729 (0.3449) | Val 0.992 (0.0327) | 45s ... BEST
+  Ep 16/25 | Train 0.744 (0.3046) | Val 0.991 (0.0326) | 45s (1/8)
+  Ep 17/25 | Train 0.726 (0.3203) | Val 0.993 (0.0307) | 45s ... BEST
+  Ep 18/25 | Train 0.747 (0.3217) | Val 0.992 (0.0306) | 46s (1/8)
+  Ep 19/25 | Train 0.761 (0.3173) | Val 0.993 (0.0315) | 46s (2/8)
+  Ep 20/25 | Train 0.749 (0.3196) | Val 0.993 (0.0295) | 45s ... BEST
+  Ep 21/25 | Train 0.746 (0.3262) | Val 0.993 (0.0308) | 45s ... BEST
+  Ep 22/25 | Train 0.721 (0.3215) | Val 0.993 (0.0297) | 45s (1/8)
+  Ep 23/25 | Train 0.732 (0.3294) | Val 0.993 (0.0306) | 45s (2/8)
+  Ep 24/25 | Train 0.731 (0.3421) | Val 0.993 (0.0299) | 45s (3/8)
+  Ep 25/25 | Train 0.730 (0.3173) | Val 0.993 (0.0341) | 45s (4/8)
+
+ Best Plant Val Accuracy: 0.9935 (99.35%)
+
+============================================================
+Evaluating on test set...
+/home/guestuser/bird_model_make/code_files/04_train_plant.py:347: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  ckpt = torch.load(BEST_MODEL_PATH)
+/home/guestuser/bird_model_make/code_files/04_train_plant.py:356: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast():
+
+ Plant Test Accuracy: 99.17%
+ Best Val  Accuracy : 99.35%
+
+Per-class report:
+                         precision    recall  f1-score   support
+
+         Apple_BlackRot      1.000     1.000     1.000        94
+        Apple_CedarRust      1.000     1.000     1.000        42
+          Apple_Healthy      1.000     1.000     1.000       248
+             Apple_Scab      1.000     1.000     1.000        95
+      Blueberry_Healthy      1.000     1.000     1.000       226
+         Cherry_Healthy      1.000     0.984     0.992       129
+   Cherry_PowderyMildew      1.000     1.000     1.000       159
+        Corn_CommonRust      1.000     1.000     1.000       180
+      Corn_GrayLeafSpot      0.904     0.962     0.932        78
+           Corn_Healthy      1.000     1.000     1.000       175
+    Corn_NorthernBlight      0.979     0.946     0.962       149
+     Grape_BlackMeasles      0.995     0.995     0.995       209
+         Grape_BlackRot      0.994     0.994     0.994       177
+          Grape_Healthy      1.000     1.000     1.000        64
+       Grape_LeafBlight      1.000     1.000     1.000       162
+  Orange_CitrusGreening      0.997     0.997     0.997       300
+    Peach_BacterialSpot      1.000     1.000     1.000       300
+          Peach_Healthy      0.982     1.000     0.991        55
+   Pepper_BacterialSpot      1.000     1.000     1.000       151
+         Pepper_Healthy      1.000     0.996     0.998       223
+     Potato_EarlyBlight      1.000     1.000     1.000       150
+         Potato_Healthy      1.000     0.958     0.979        24
+      Potato_LateBlight      0.974     0.987     0.980       150
+      Raspberry_Healthy      1.000     1.000     1.000        57
+        Soybean_Healthy      0.997     1.000     0.998       300
+   Squash_PowderyMildew      1.000     1.000     1.000       276
+     Strawberry_Healthy      1.000     1.000     1.000        69
+  Strawberry_LeafScorch      1.000     1.000     1.000       167
+   Tomato_BacterialSpot      0.987     0.977     0.982       300
+     Tomato_EarlyBlight      0.954     0.973     0.964       150
+         Tomato_Healthy      1.000     0.996     0.998       240
+      Tomato_LateBlight      0.979     0.969     0.974       287
+        Tomato_LeafMold      0.980     1.000     0.990       144
+     Tomato_MosaicVirus      1.000     1.000     1.000        57
+Tomato_SeptoriaLeafSpot      0.985     0.989     0.987       267
+     Tomato_SpiderMites      0.992     0.984     0.988       252
+      Tomato_TargetSpot      0.962     0.967     0.965       212
+ Tomato_YellowCurlVirus      0.997     1.000     0.998       300
+
+               accuracy                          0.992      6618
+              macro avg      0.991     0.991     0.991      6618
+           weighted avg      0.992     0.992     0.992      6618
+
+
+ Training curves saved: /home/guestuser/agri_robot_ml/graphs/plant_training_curves.png
+ Confusion matrix saved: /home/guestuser/agri_robot_ml/graphs/plant_confusion_matrix.png
+
+ Top confused pairs:
+  Corn_NorthernBlight → Corn_GrayLeafSpot: 5.4%
+
+ Plant model saved: /home/guestuser/agri_robot_ml/models/plant/best_plant_model.pth
+Run: python 05_train_bird.py
+guestuser@mars-4090-22:~/bird_model_make/code_files$ ls
+00_install.py            02_prepare_plant_dataset.py  04b_fix_confusion.py  05_train_bird.py     07_inference_pi4.py  test.py
+01_download_datasets.py  03_prepare_bird_dataset.py   04_train_plant.py     06_export_tflite.py  readme.md
+guestuser@mars-4090-22:~/bird_model_make/code_files$ python3 04b_fix_confusion.py
+/home/guestuser/.local/lib/python3.10/site-packages/albumentations/check_version.py:147: UserWarning: Error fetching version info <urlopen error [Errno -3] Temporary failure in name resolution>
+  data = fetch_version_info()
+============================================================
+Targeted confusion fix: Blight vs GrayLeafSpot
+Device: cuda
+============================================================
+/home/guestuser/bird_model_make/code_files/04b_fix_confusion.py:56: UserWarning: Argument(s) 'var_limit' are not valid for transform GaussNoise
+  A.GaussNoise(var_limit=(20, 80), p=0.5),
+
+Hard pair dataset: 1048 images
+Classes: ['Corn_NorthernBlight', 'Corn_GrayLeafSpot']
+/home/guestuser/bird_model_make/code_files/04b_fix_confusion.py:99: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  ckpt  = torch.load(BEST_MODEL, map_location=device)
+
+Loaded model with val_acc: 99.35%
+/home/guestuser/bird_model_make/code_files/04b_fix_confusion.py:123: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler    = GradScaler()
+
+Fine-tuning on hard pairs...
+/home/guestuser/bird_model_make/code_files/04b_fix_confusion.py:135: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast():
+  Hard pair ep 1/5 | acc 0.663 | loss 0.9269
+  Hard pair ep 2/5 | acc 0.859 | loss 0.1483
+  Hard pair ep 3/5 | acc 0.866 | loss 0.1336
+  Hard pair ep 4/5 | acc 0.886 | loss 0.1044
+  Hard pair ep 5/5 | acc 0.898 | loss 0.0839
+
+✅ Hard-pair fixed model saved: /home/guestuser/agri_robot_ml/models/plant/best_plant_model_hardfix.pth
+Re-run evaluation section of 04_train_plant.py with this model to verify improvement.
+guestuser@mars-4090-22:~/bird_model_make/code_files$ nano check_confusion.py
+guestuser@mars-4090-22:~/bird_model_make/code_files$ python3 check_confusion.py
+============================================================
+Plant Model — Confusion Check
+Model: best_plant_model_hardfix.pth
+============================================================
+Device: cuda | Classes: 38
+/home/guestuser/bird_model_make/code_files/check_confusion.py:65: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  ckpt  = torch.load(MODEL_PATH, map_location=device)
+Model loaded (val_acc from training: 99.35%)
+Test images: 6618
+
+Running inference on test set...
+
+Overall Test Accuracy: 66.89%
+Average Confidence   : 42.1%
+
+============================================================
+CORN DISEASE CONFUSION CHECK
+============================================================
+
+Corn Accuracy: 62.89% (582 test images)
+
+Corn Confusion Matrix (%):
+                              CommonRust        GrayLeafSpot      Healthy           NorthernBlight    
+Corn_CommonRust                 22.2%  <<         52.8% !!!          0.0%             25.0% !!!       
+Corn_GrayLeafSpot                0.0%             97.4%  <<          0.0%              2.6%           
+Corn_Healthy                     0.0%              4.6%             64.9%  <<         30.5% !!!       
+Corn_NorthernBlight              0.0%              8.1%              0.0%             91.9%  <<       
+
+Key confusion pair:
+  NorthernBlight → predicted as GrayLeafSpot : 8.1%
+  GrayLeafSpot   → predicted as NorthernBlight: 2.6%
+
+  OK — Below 15% threshold, no fix needed
+
+============================================================
+TOP CONFUSED PAIRS — ALL DISEASES
+============================================================
+
+True Label                               Predicted As                             Confusion%
+-----------------------------------------------------------------------------------------------
+Potato_Healthy                           Corn_NorthernBlight                        66.7%  !!!
+Apple_Healthy                            Corn_NorthernBlight                        61.7%  !!!
+Tomato_TargetSpot                        Corn_NorthernBlight                        54.7%  !!!
+Potato_LateBlight                        Corn_NorthernBlight                        54.0%  !!!
+Corn_CommonRust                          Corn_GrayLeafSpot                          52.8%  !!!
+Tomato_LateBlight                        Corn_NorthernBlight                        46.7%  !!!
+Tomato_BacterialSpot                     Corn_NorthernBlight                        45.0%  !!!
+Tomato_SpiderMites                       Corn_NorthernBlight                        36.1%  !!!
+Soybean_Healthy                          Corn_NorthernBlight                        34.7%  !!!
+Tomato_EarlyBlight                       Corn_NorthernBlight                        34.7%  !!!
+Apple_Scab                               Corn_NorthernBlight                        33.7%  !!!
+Squash_PowderyMildew                     Corn_GrayLeafSpot                          30.8%  !!!
+Corn_Healthy                             Corn_NorthernBlight                        30.3%  !!!
+Grape_LeafBlight                         Corn_NorthernBlight                        30.2%  !!!
+Raspberry_Healthy                        Corn_NorthernBlight                        28.1%  !!!
+
+============================================================
+PER CLASS ACCURACY
+============================================================
+
+Class                                         Accuracy   Avg Conf   Samples 
+---------------------------------------------------------------------------
+  Apple_BlackRot                                95.7%     50.1%      94
+  Apple_CedarRust                               92.9%     41.0%      42
+  Apple_Healthy                                 23.4%     30.7%     248  <-- LOW
+  Apple_Scab                                    52.6%     38.8%      95  <-- LOW
+  Blueberry_Healthy                             96.0%     44.0%     226
+  Cherry_Healthy                                90.7%     41.1%     129
+  Cherry_PowderyMildew                          77.4%     42.9%     159  <-- LOW
+  Corn_CommonRust                               22.2%     43.3%     180  <-- LOW
+  Corn_GrayLeafSpot                             97.4%     87.1%      78
+  Corn_Healthy                                  64.6%     40.5%     175  <-- LOW
+  Corn_NorthernBlight                           91.9%     84.3%     149
+  Grape_BlackMeasles                            88.5%     45.4%     209
+  Grape_BlackRot                               100.0%     61.9%     177
+  Grape_Healthy                                 68.8%     31.9%      64  <-- LOW
+  Grape_LeafBlight                              42.0%     31.1%     162  <-- LOW
+  Orange_CitrusGreening                         96.0%     38.0%     300
+  Peach_BacterialSpot                           97.3%     64.2%     300
+  Peach_Healthy                                 96.4%     56.7%      55
+  Pepper_BacterialSpot                          86.1%     41.6%     151
+  Pepper_Healthy                                95.1%     38.1%     223
+  Potato_EarlyBlight                            72.7%     34.4%     150  <-- LOW
+  Potato_Healthy                                 8.3%     20.6%      24  <-- LOW
+  Potato_LateBlight                             42.7%     47.9%     150  <-- LOW
+  Raspberry_Healthy                             68.4%     30.3%      57  <-- LOW
+  Soybean_Healthy                               52.7%     25.1%     300  <-- LOW
+  Squash_PowderyMildew                          45.3%     31.3%     276  <-- LOW
+  Strawberry_Healthy                            97.1%     42.0%      69
+  Strawberry_LeafScorch                         61.1%     34.1%     167  <-- LOW
+  Tomato_BacterialSpot                          23.7%     31.0%     300  <-- LOW
+  Tomato_EarlyBlight                            52.0%     43.5%     150  <-- LOW
+  Tomato_Healthy                                70.4%     36.2%     240  <-- LOW
+  Tomato_LateBlight                             46.7%     49.8%     287  <-- LOW
+  Tomato_LeafMold                               76.4%     40.0%     144  <-- LOW
+  Tomato_MosaicVirus                            87.7%     50.3%      57
+  Tomato_SeptoriaLeafSpot                       73.4%     50.6%     267  <-- LOW
+  Tomato_SpiderMites                            57.9%     41.6%     252  <-- LOW
+  Tomato_TargetSpot                             20.8%     30.7%     212  <-- LOW
+  Tomato_YellowCurlVirus                        84.7%     37.3%     300
+
+Corn confusion matrix saved: /home/guestuser/agri_robot_ml/graphs/corn_confusion_check.png
+
+============================================================
+SINGLE IMAGE TEST
+============================================================
+
+Testing random corn images from test set:
+
+  Image: Corn_CommonRust_00955.jpg
+  Rank   Disease                                  Confidence
+  ------------------------------------------------------------
+  #1     Corn_GrayLeafSpot                         46.1%  █████████
+  #2     Corn_NorthernBlight                       22.9%  ████
+  #3     Tomato_SeptoriaLeafSpot                    7.3%  █
+  #4     Peach_BacterialSpot                        2.5%  
+  #5     Corn_CommonRust                            2.4%  
+
+  Image: Corn_GrayLeafSpot_00502.jpg
+  Rank   Disease                                  Confidence
+  ------------------------------------------------------------
+  #1     Corn_GrayLeafSpot                         68.7%  █████████████
+  #2     Corn_NorthernBlight                       23.1%  ████
+  #3     Apple_CedarRust                            1.1%  
+  #4     Tomato_LeafMold                            0.6%  
+  #5     Peach_BacterialSpot                        0.5%  
+
+  Image: Corn_Healthy_01150.jpg
+  Rank   Disease                                  Confidence
+  ------------------------------------------------------------
+  #1     Corn_Healthy                              40.7%  ████████
+  #2     Corn_NorthernBlight                       25.3%  █████
+  #3     Corn_GrayLeafSpot                         19.1%  ███
+  #4     Orange_CitrusGreening                      2.0%  
+  #5     Corn_CommonRust                            1.2%  
+
+  Image: Corn_NorthernBlight_00809.jpg
+  Rank   Disease                                  Confidence
+  ------------------------------------------------------------
+  #1     Corn_NorthernBlight                       98.6%  ███████████████████
+  #2     Corn_GrayLeafSpot                          0.7%  
+  #3     Peach_BacterialSpot                        0.4%  
+  #4     Corn_CommonRust                            0.1%  
+  #5     Tomato_LateBlight                          0.0%  
+
+============================================================
+VERDICT
+============================================================
+
+  Overall accuracy : 66.89%
+  Corn accuracy    : 62.89%
+  Confused pairs   : 25
+
+  ACTION: Model is ready — Run python3 05_train_bird.py
+============================================================
+guestuser@mars-4090-22:~/bird_model_make/code_files$ nano readme.md
+

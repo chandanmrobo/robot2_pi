@@ -1,0 +1,62 @@
+)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+    149/149      4.26G   0.003299  0.0008954    1.5e-05         58        640:  96%|█████████▋| 274/284 [00:15<00:00, 17.52it/s]/home/guestuser/agri_robot_ml/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+    149/149      4.26G   0.003297  0.0008954  1.499e-05         64        640:  96%|█████████▋| 274/284 [00:15<00:00, 17.52it/s]/home/guestuser/agri_robot_ml/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+    149/149      4.26G   0.003298  0.0008952  1.502e-05         53        640:  97%|█████████▋| 276/284 [00:15<00:00, 17.43it/s]/home/guestuser/agri_robot_ml/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+    149/149      4.26G   0.003296  0.0008952  1.501e-05         61        640:  97%|█████████▋| 276/284 [00:15<00:00, 17.43it/s]/home/guestuser/agri_robot_ml/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+    149/149      4.26G   0.003293  0.0008948    1.5e-05         57        640:  98%|█████████▊| 278/284 [00:15<00:00, 17.77it/s]/home/guestuser/agri_robot_ml/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+    149/149      4.26G    0.00329   0.000894  1.498e-05         57        640:  98%|█████████▊| 278/284 [00:15<00:00, 17.77it/s]/home/guestuser/agri_robot_ml/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+    149/149      4.26G   0.003287  0.0008937  1.497e-05         56        640:  99%|█████████▊| 280/284 [00:15<00:00, 18.04it/s]/home/guestuser/agri_robot_ml/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+    149/149      4.26G   0.003307  0.0008945    1.5e-05         66        640:  99%|█████████▊| 280/284 [00:16<00:00, 18.04it/s]/home/guestuser/agri_robot_ml/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+    149/149      4.26G   0.003303  0.0008942  1.499e-05         62        640:  99%|█████████▉| 282/284 [00:16<00:00, 17.96it/s]/home/guestuser/agri_robot_ml/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+    149/149      4.26G   0.003302  0.0008942  1.498e-05         52        640:  99%|█████████▉| 282/284 [00:16<00:00, 17.96it/s]/home/guestuser/agri_robot_ml/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+    149/149      4.26G   0.003307  0.0008946  1.497e-05         51        640: 100%|██████████| 284/284 [00:16<00:00, 17.57it/s]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 13/13 [00:01<00:00,  6.91it/s]
+                   all        786        400      0.623      0.838      0.787      0.775
+
+150 epochs completed in 0.774 hours.
+Optimizer stripped from /home/guestuser/agri_robot_ml/models/bird/bird_yolov5n/weights/last.pt, 3.8MB
+Optimizer stripped from /home/guestuser/agri_robot_ml/models/bird/bird_yolov5n/weights/best.pt, 3.8MB
+
+Validating /home/guestuser/agri_robot_ml/models/bird/bird_yolov5n/weights/best.pt...
+Fusing layers... 
+Model summary: 157 layers, 1761871 parameters, 0 gradients, 4.1 GFLOPs
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 13/13 [00:02<00:00,  5.22it/s]
+                   all        786        400      0.626      0.838      0.787      0.775
+                  Bird        786        400      0.626      0.838      0.787      0.775
+Results saved to /home/guestuser/agri_robot_ml/models/bird/bird_yolov5n
+
+Bird training complete!
+
+============================================================
+Evaluating Bird Model...
+Traceback (most recent call last):
+  File "/home/guestuser/.local/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 3812, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas/_libs/index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7088, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7096, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'metrics/precision(B)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/guestuser/bird_model_make/code_files/05_train_bird.py", line 123, in <module>
+    axes[0].plot(df["metrics/precision(B)"])
+  File "/home/guestuser/.local/lib/python3.10/site-packages/pandas/core/frame.py", line 4113, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "/home/guestuser/.local/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 3819, in get_loc
+    raise KeyError(key) from err
+KeyError: 'metrics/precision(B)'
+guestuser@mars-4090-22:~/bird_model_make/code_files$
